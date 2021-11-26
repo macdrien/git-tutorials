@@ -3,6 +3,7 @@
 ## 1.1. Sommaire general
 
 - [1. GIT les bases](.)
+- [2. GIT avancé](./2_GIT_avance.md)
 
 ## 1.2. Sommaire
 
