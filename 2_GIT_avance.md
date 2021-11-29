@@ -20,6 +20,11 @@
   - [1.8. Les adds partiels](#18-les-adds-partiels)
   - [1.9. Le nommage des commits](#19-le-nommage-des-commits)
     - [1.9.1. Nommer un commit](#191-nommer-un-commit)
+  - [1.10. Mettre son travail de cote](#110-mettre-son-travail-de-cote)
+    - [1.10.1. Mettre son travail de cote](#1101-mettre-son-travail-de-cote)
+    - [1.10.2. Lister ses stashs](#1102-lister-ses-stashs)
+    - [1.10.3. Recuperer le contenu d'un stash](#1103-recuperer-le-contenu-dun-stash)
+    - [1.10.4. Supprimer un stash](#1104-supprimer-un-stash)
 
 ## 1.3. Introduction
 
@@ -257,3 +262,53 @@ J'ai personnellement adopté une convention de nommage personnelle que j'appliqu
 - **UPD** est en dernier. Il signifie Update et est un peu passe-partout. Il est utilisé lors de modification naturellement, mais également si j'ai un commit qui effectue plusieurs petites tâches qui devront toutes être décrite en description du commit.
 
 Je ne vous présente pas mon système pour que vous le repreniez, mais plutôt pour que vous ayez un exemple de ce qui peut être possible afin que vous puissiez créer votre système ou adapter un système existant à vos besoins (qui peuvent être différents des autres développeurs).
+
+## 1.10. Mettre son travail de cote
+
+Il peut arriver, pendant votre travail, que vous ayez besoin de mettre de côté tout votre travail ou une partie de ce dernier le temps de faire autre chose. La première idée qui pourra vous venir maintenant est de faire un premier commit que vous complèterai avec un amend. Mais ce n'est pas une bonne chose (le amend est une solution de secours en cas d'erreur).
+
+Pour éviter cela, Git dispose de la commande `git stash`. Stash est une zone annexe de votre repo dans laquelle vous pouvez stocker des modifications en attendant de les réutiliser plus tard.
+
+Comme toutes les commandes, et même plus encore pour stash, plusieurs actions et options sont possibles. En voici les principales:
+
+### 1.10.1. Mettre son travail de cote
+
+Avec la commande `git stash push`, vous pouvez mettre votre travail de côté.
+
+Vous pouvez compléter cette commande avec l'option `-m` suivi d'un titre (le fonctionnement et l'objectif sont les mêmes que l'option `-m` de git commit).
+
+Si vous ne préciser aucun argument concernant vos fichiers, tous les modifications de fichiers déjà suivis par Git seront misent de côté.  
+Pour les fichiers nouvellement créé, vous pouvez les inclures à votre stash en les ajoutant à votre index au préalable avec un `git add`.  
+Si seulement certains fichiers doivent être mis de côté, vous pouvez finir votre commande par `--` suivi, entourés d'espaces, de tous les fichiers que vous voulez ajouter.  
+Par exemple `git stash push -- index.js css/style.js`.
+
+*Note:* Vous pourrez peut-être trouver sur internet des gens parler de la commande `git stash save`. Il s'agit de l'ancienne commande pour stash push. Bien que toujours présente dans les commandes exécutables, save est dépréciée et sera supprimée tôt ou tard.
+
+### 1.10.2. Lister ses stashs
+
+Vous pouvez faire plusieurs stash différents en faisant plusieurs push. Dans ce cas, ils seront listé et référencés par une liste dont le premier élément sera votre dernier stash effectué et le dernier élément sera votre stash le plus ancien.
+
+Pour lister vos stash, vous pouvez utiliser la commande: `git stash list`
+
+Le numéro que vous observez alors entre {} est l'index de chaque stash. Il vous sera utile si vous voulez récupérer un stash en particulier.
+
+### 1.10.3. Recuperer le contenu d'un stash
+
+Pour récupérer le contenu d'un stash, vous avez deux commandes de disponible:
+
+`git stash apply` va placer dans votre repo local le dernier stash que vous avez fait. Mais une copie de ce stash va rester dans la pile de côté.
+
+`git stash pop` va placer dans votre repo local le dernier stash que vous avez fait et va supprimer la copie de ce stash dans la pile.
+
+Si vous ne voulez pas récupérer le dernier stash fait, vous pouvez préciser l'index du stash que vous voulez (cf. [1.10.2](#1102-lister-ses-stashs)) à la fin de votre commande.
+
+### 1.10.4. Supprimer un stash
+
+Après un apply ou pour faire du nettoyage, vous pouvez vider votre pile de stash. Pour cela, vous avez à nouveau 2 options:
+
+- `git stash drop` qui va supprimer le dernier stash enregistré. Vous pouvez y appliquer un numéro d'index pour supprimer le stash voulu.
+- `git stash clear` qui va supprimer toute votre pile.
+
+---
+
+Comme je l'ai mentionné plus haut, il ne s'agit ici que des commandes principales de Stash. Vous pourrez en trouver d'avantage dans la documentation ou en faisant des recherches si vous avez besoin.
