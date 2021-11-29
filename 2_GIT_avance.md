@@ -215,6 +215,27 @@ Vous pouvez également y ajouter le `-m` que vous connaissez déjà pour modifie
 
 ## 1.8. Les adds partiels
 
+Vous pouvez n'avoir besoin d'ajouter à votre index qu'une partie d'un fichier. Pour faire cela, pour pouvez ajouter l'option `-p` pour `--patch` à votre `git add`. Vous aurez alors directement dans la console une présentation des changement avec la possibilité de choisir si vous voulez ajouter le changement ou non à votre index.
+
+Différentes options sont possible:
+
+- **y** pour ajouter le changement et passer au suivant.
+- **n** pour marquer le changement comme n'étant pas à ajouter et passer au suivant.
+- **q** pour quitter cette interface de sélection sans sélectionner le morceau (hunk) présenté ni les suivants.  
+  Concervera les choix déjà effectués.
+- **a** pour ajouter le morceau (hunk) présenté et tous les suivants.
+- **d** pour ne pas ajouter le morceau (hunk) présenté et aucun des morceaux suivants.
+- **g** pour indiquer un numéro de hunk et s'y rendre.
+- **/** pour rechercher un hunk en utilisant une regex et s'y rendre.
+- **j** pour laisser le hunk courant non-décidé et aller au prochain hunk non-décidé.
+- **J** pour laisser le hunk courant non-décidé et aller au prochain hunk.
+- **K** pour laisser le hunk courant non-décidé et aller au hunk précédent.
+- **s** pour séparer le hunk courant en plusieurs hunks plus petits.
+- **e** pour éditer le hunk présenté.
+- **?** pour afficher un résumé des actions possibles.
+
+*Note:* l'option `-p` est également disponible dans d'autres commandes comme stash push par exemple.
+
 ## 1.9. Le nommage
 
 ### 1.9.1. Nommer un commit
