@@ -14,7 +14,7 @@
   - [1.4. Configurer l'authentification SSH](#14-configurer-lauthentification-ssh)
     - [Generer une cle SSH](#generer-une-cle-ssh)
       - [Windows](#windows)
-  - [1.5. Utiliser rebase a la place de merge](#15-utiliser-rebase-a-la-place-de-merge)
+  - [1.5. Utiliser rebase avant de faire un merge](#15-utiliser-rebase-avant-de-faire-un-merge)
   - [1.6. Le rebase interractif](#16-le-rebase-interractif)
   - [1.7. Les adds partiels](#17-les-adds-partiels)
   - [1.8. Le nommage](#18-le-nommage)
@@ -124,7 +124,59 @@ Host gitlab.com
 
 Notez que vous pouvez utiliser la même clé pour toutes vos plateforme. Mais ce n'est pas une bonne idée. Si votre clé privée est compromise, alors le voleur aura accès à toutes vos plateforme. Alors que si vous faites une clé par plateforme vous limitez les dégâts.
 
-## 1.5. Utiliser rebase a la place de merge
+## 1.5. Utiliser rebase avant de faire un merge
+
+Dans la première partie du tuto, on a évoqué le merge d'une branche vers sa branche mère. Le merge est très efficace mais il a un défaut, il insère, dans la branche mère, les commits dans l'ordre croissant de date de création. Autrement dit, vos commits et les commits de l'autre branche vont se mélanger. Si en pratique cela ne change rien au projet, cela peut en revanche poser quelques problèmes de lecture de l'historique.
+
+Pour un merge de la branche B sur la branche A, cela pourrait donner ceci:
+
+Avant le merge:
+
+```plaintext
+Branche A -X----X-----X----X--
+            \                 
+Branche B    -O----O----O----O
+```
+
+Après le merge:
+
+```plaintext
+Branche A -X--O--X--O--X--O--X--O-
+```
+
+Afin d'avoir un arbre de commits plus propre et surtout plus clair à lire, on va utiliser la commande rebase. En utilisant la commande rebase sur la branche B avant de merge, l'origine de la branche B va se déplacer sur le dernier commit de la branche A. Cela va permettre de réorganiser le tout avant de merge:
+
+Sur la branche B:
+
+```bash
+git rebase A
+git checkout A
+git merge B
+```
+
+En faisant cela, l'arbre des commits devient:
+
+Avant le rebase:
+
+```plaintext
+Branche A -X----X-----X----X--
+            \                 
+Branche B    -O----O----O----O
+```
+
+Après le rebase:
+
+```plaintext
+Branche A -X----X-----X----X
+                            \                 
+Branche B                    -O----O----O----O
+```
+
+Après le merge:
+
+```plaintext
+Branche A -X----X-----X----X-O----O----O----O
+```
 
 ## 1.6. Le rebase interractif
 
