@@ -18,7 +18,7 @@
   - [1.6. Le rebase interractif](#16-le-rebase-interractif)
   - [1.7. Ajouter des modifications au dernier commit](#17-ajouter-des-modifications-au-dernier-commit)
   - [1.8. Les adds partiels](#18-les-adds-partiels)
-  - [1.9. Le nommage](#19-le-nommage)
+  - [1.9. Le nommage des commits](#19-le-nommage-des-commits)
     - [1.9.1. Nommer un commit](#191-nommer-un-commit)
     - [1.9.2. Nommer une branche](#192-nommer-une-branche)
 
@@ -236,8 +236,27 @@ Différentes options sont possible:
 
 *Note:* l'option `-p` est également disponible dans d'autres commandes comme stash push par exemple.
 
-## 1.9. Le nommage
+## 1.9. Le nommage des commits
 
 ### 1.9.1. Nommer un commit
+
+Nommer un commit est important car le titre d'un commit est l'élément principal qui servira à vous ou à la personne reprennant le code à savoir ce que le commit fait.  
+On oublie donc les "test", "qsd" et autre " " comme j'ai pu en voir dans un contexte professionnel.
+
+A la place, je vous recommande d'adopter une convention de nommage simple et fixe, sinon à toute l'équipe, du moins à vous. C'est en servant d'exemple que vous pourrez inciter les autres à changer leurs pratiques.
+
+Par exemple, si vous utilisez Jira, vous pouvez lier le commmit que vous faite à la story Jira que vous êtes en train de traiter en commençant votre commit par: "Story XP[S]:XXX". Le S n'étant pas toujours présent et XXX correspondant à la story sur laquelle vous travaillez.  
+En faisant cela, en plus d'une suite de titre explicite, vous aider le futur relecteur. Ce dernier pourra, au besoin, aller voir la story en question pour voir son objectif.
+
+J'ai personnellement adopté une convention de nommage personnelle que j'applique sur tous les projets sur lesquels je passe du moment que ma convention n'entre pas en conflit avec une convention existante. Elle est simple et lisible par n'importe qui sans avoir besoin de documentation. Il s'agit d'un préfixage de 3 lettres majuscules de chaque titre de commit. Cela sert à indiquer le type de commit dont il s'agit. Je complète ensuite le titre pour apporter une précision sur l'action.
+
+- **ADD** indique que le commit ajoute quelque chose (fonctionnalité, nouvelle classe/méthode, ...).
+- **DEL** indique, au contraire, que le commit ne fait que supprimer des éléments.
+- **FIX** indique que le commit résoud un bug.
+- **WIP** indique que le commit concerne un travail en cours et non-terminé.
+- **REF** indique que le commit applique un réfactor du code (sans ajout ou suppression de fonctionnalité).
+- **UPD** est en dernier. Il signifie Update et est un peu passe-partout. Il est utilisé lors de modification naturellement, mais également si j'ai un commit qui effectue plusieurs petites tâches qui devront toutes être décrite en description du commit.
+
+Je ne vous présente pas mon système pour que vous le repreniez, mais plutôt pour que vous ayez un exemple de ce qui peut être possible afin que vous puissiez créer votre système ou adapter un système existant à vos besoins (qui peuvent être différents des autres développeurs).
 
 ### 1.9.2. Nommer une branche
