@@ -207,6 +207,12 @@ Tout comme le rebase classique, il faudra push avec un `git push --force-with-le
 
 ## 1.7. Ajouter des modifications au dernier commit
 
+Il peut arriver qu'après un commit, vous vous rendiez compte que vous avez oublié une modification dans votre source.  
+Pas de panique, ajoutez la modification à votre index et saisissez la commande `git commit --amend --no-edit`. Elle va stocker les modifications dans le dernier commit effectué et sans vous demander de ressaisir votre message.
+
+De même, si vous avez fait une erreur dans le texte du commit, vous pouvez entrer `git commit --amend` pour ouvrir l'éditeur de commit.  
+Vous pouvez également y ajouter le `-m` que vous connaissez déjà pour modifier le titre du commit (`git commit --amend -m "Titre du commit"`).
+
 ## 1.8. Les adds partiels
 
 ## 1.9. Le nommage
