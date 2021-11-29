@@ -33,14 +33,14 @@ Ceci est la deuxième partie du tutoriel sur GIT. Si vous ne connaissez pas GIT 
 ---
 
 Bien, vous avez donc déjà une petite expérience avec GIT. Mais vous êtes acharné! Il vous en faut plus!  
-Très bien, dans cette session, nous allons aborder quelques concepts clés de GIT pour une utilisation qui se rapproche de ce que j'utilise au quotidien dans mon travail et dans mes projets annexes.
+Très bien, dans cette session, nous allons aborder quelques concepts clé de GIT pour une utilisation qui se rapproche de ce que j'utilise au quotidien dans mon travail et dans mes projets annexes.
 
-On va commencer par se détourner un peu des commandes pour se concentrer sur un aspet de sécurité.
+On va commencer par se détourner un peu des commandes pour se concentrer sur un aspect de sécurité.
 
 ## 1.4. Configurer l'authentification SSH
 
-Secure SHell est un protocole de communication entre deux machines qui permet bien des choses. SSH permet entre autres l'accès à distance de serveurs, ou de RaspberryPI qui tourne chez vous pour de la domotique ou pour un serveur privé. Dans le cadre de l'utilisation de GIT, SSH va nous permettre de nous connecter de manière sécurisée à notre repo distant, et, en plus de ça, d'avoir accès à différents repo sur différentes plateformes à la fois.  
-C'est le grand problème que j'ai rapidement recontré quand j'ai voulu explorer les différentes plateformes d'hébergements de repo sur internet (GitHub, GitLab, ...). Pour passer de l'une à l'autre, il faut réinitialiser ses identifiants sur la première plateforme pour se connecter à la seconde. C'est très peu pratique, en particulier si vous changez régulièrement de plateforme.
+Secure SHell est un protocole de communication entre deux machines qui permet bien des choses. SSH permet entre autres l'accès à distance de serveurs, ou de RaspberryPI qui tourne chez vous pour de la domotique ou pour un serveur privé. Dans le cadre de l'utilisation de GIT, SSH va nous permettre de nous connecter de manière sécurisée à notre repo distant, et, en plus de ça, d'avoir accès à des repo sur différentes plateformes à la fois.  
+C'est le grand problème que j'ai rapidement recontré quand j'ai voulu explorer les différentes plateformes d'hébergements de repo sur internet (GitHub, GitLab, ...). Pour passer de l'une à l'autre, il faut réinitialiser ses identifiants sur la première plateforme puis se connecter à la seconde. C'est très peu pratique, en particulier si vous changez régulièrement.
 
 La solution c'est SSH. Ce protocole va vous permettre, en générant une paire de clés et en plaçant votre clé publique sur la plateforme, de pouvoir vous connecter à plusieurs plateforme dynamiquement via cette clé.
 
