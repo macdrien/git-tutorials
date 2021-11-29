@@ -20,7 +20,6 @@
   - [1.8. Les adds partiels](#18-les-adds-partiels)
   - [1.9. Le nommage des commits](#19-le-nommage-des-commits)
     - [1.9.1. Nommer un commit](#191-nommer-un-commit)
-    - [1.9.2. Nommer une branche](#192-nommer-une-branche)
 
 ## 1.3. Introduction
 
@@ -258,5 +257,3 @@ J'ai personnellement adopté une convention de nommage personnelle que j'appliqu
 - **UPD** est en dernier. Il signifie Update et est un peu passe-partout. Il est utilisé lors de modification naturellement, mais également si j'ai un commit qui effectue plusieurs petites tâches qui devront toutes être décrite en description du commit.
 
 Je ne vous présente pas mon système pour que vous le repreniez, mais plutôt pour que vous ayez un exemple de ce qui peut être possible afin que vous puissiez créer votre système ou adapter un système existant à vos besoins (qui peuvent être différents des autres développeurs).
-
-### 1.9.2. Nommer une branche
