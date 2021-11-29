@@ -12,14 +12,15 @@
   - [1.2. Sommaire](#12-sommaire)
   - [1.3. Introduction](#13-introduction)
   - [1.4. Configurer l'authentification SSH](#14-configurer-lauthentification-ssh)
-    - [Generer une cle SSH](#generer-une-cle-ssh)
-      - [Windows](#windows)
+    - [1.4.1. Generer une cle SSH](#141-generer-une-cle-ssh)
+      - [1.4.1.1. Windows](#1411-windows)
   - [1.5. Utiliser rebase avant de faire un merge](#15-utiliser-rebase-avant-de-faire-un-merge)
   - [1.6. Le rebase interractif](#16-le-rebase-interractif)
-  - [1.7. Les adds partiels](#17-les-adds-partiels)
-  - [1.8. Le nommage](#18-le-nommage)
-    - [1.8.1. Nommer un commit](#181-nommer-un-commit)
-    - [1.8.2. Nommer une branche](#182-nommer-une-branche)
+  - [1.7. Ajouter des modifications au dernier commit](#17-ajouter-des-modifications-au-dernier-commit)
+  - [1.8. Les adds partiels](#18-les-adds-partiels)
+  - [1.9. Le nommage](#19-le-nommage)
+    - [1.9.1. Nommer un commit](#191-nommer-un-commit)
+    - [1.9.2. Nommer une branche](#192-nommer-une-branche)
 
 ## 1.3. Introduction
 
@@ -39,11 +40,11 @@ C'est le grand problème que j'ai rapidement recontré quand j'ai voulu explorer
 
 La solution c'est SSH. Ce protocole va vous permettre, en générant une paire de clés et en plaçant votre clé publique sur la plateforme, de pouvoir vous connecter à plusieurs plateforme dynamiquement via cette clé.
 
-### Generer une cle SSH
+### 1.4.1. Generer une cle SSH
 
 *Note: Pour Linux, vous pouvez suivre le même tutoriel en ouvrant un terminal et en vous rendant dans votre `/home/<Nom d'utilisateur>` à la place de `/<Lettre de disque>/Users/<Nom d'utilisateur`. Les commandes restent les mêmes.*
 
-#### Windows
+#### 1.4.1.1. Windows
 
 Ouvrez un terminal Git Bash (installation via l'exe de d'installation de GIT, normalement installé si vous n'avez pas touché aux options lors de l'installation de GIT).  
 Votre dossier courant (indiqué en jaune dans l'en-tête de la ligne) doit être `~`. Il correspond à votre dossier utilisateur de Windows.
@@ -178,12 +179,38 @@ Après le merge:
 Branche A -X----X-----X----X-O----O----O----O
 ```
 
+Comme on peut le voir, rebase modifie le référenciel des commits. Par précaution, GIT ne nous laissera pas push cette modification. Pour envoyer un rebase, il faut ajouter l'arguement `--force` à `git push`. Ou mieux, `git push --force-with-lease` (j'aborderai cet argument plus tard).
+
+Rebase est une commande très vaste et aussi très risquée. On va voir tout de suite un autre example d'utilisation.
+
 ## 1.6. Le rebase interractif
 
-## 1.7. Les adds partiels
+Pour passer en rebase interactif: `git rebase -i A` ou `git rebase --interactive A`.
 
-## 1.8. Le nommage
+*Note:* Il est possible de changer l'ordre des lignes afin de réordonner les commits.
 
-### 1.8.1. Nommer un commit
+La liste des commits est ordonnée du plus ancien (en haut) au plus récent (dernier de la liste):
 
-### 1.8.2. Nommer une branche
+- **pick** applique le commit sans modification.
+- **reword** ouvrira le commit pour changer le title et/ou la description.
+- **edit** met le rebase en pause à ce commit pour pouvoir y faire des modifications via des ammends.
+- **squash** fusionne le commit avec le précédent (celui de la ligne du dessus). Ouvrira une interface avec les deux titres et description de commit pour choisir ce qui sera conservé. *Note*: Il est possible de squash plusieurs commits d'un coup dans un commit.
+- **fixup** comme squash mais n'affiche pas l'interface d'édition du commit. Conserve uniquement le descriptif du commit non-squash. En utilisant l'arguement `-C`, le decsriptif conservé sera celui du commit avec `fixup -C`.
+- **exec** suivi d'une commande exécutera la commande shell.
+- **break** met ne pause le rebase à cet endroit. Demandera un `git rebase --continue` pour poursuivre.
+- **drop** supprime le commit.
+- **label**/**reset**/**merge** ne sont utile que dans un cas très spécifique. Je ne les détaillerai donc pas ici.
+
+Après avoir fait les changements appropriés, vous pourrez sauvegarder et quitter l'éditeur, le rebase s'exécutera en suivant les instructions notées.
+
+Tout comme le rebase classique, il faudra push avec un `git push --force-with-lease` pour que les changements soient publiés.
+
+## 1.7. Ajouter des modifications au dernier commit
+
+## 1.8. Les adds partiels
+
+## 1.9. Le nommage
+
+### 1.9.1. Nommer un commit
+
+### 1.9.2. Nommer une branche
