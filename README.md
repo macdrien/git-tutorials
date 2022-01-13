@@ -1,13 +1,14 @@
-# 1. GIT les bases
+# 1. Git les bases
 
 ## 1.1. Sommaire general
 
-- [1. GIT les bases](.)
-- [2. GIT avancé](./2_GIT_avance.md)
+- [1. Git les bases](.)
+- [2. Git avancé](2_Git_avance.md)
+- [3. GitFlow](3_Gitflow.md)
 
 ## 1.2. Sommaire
 
-- [1. GIT les bases](#1-git-les-bases)
+- [1. Git les bases](#1-git-les-bases)
   - [1.1. Sommaire general](#11-sommaire-general)
   - [1.2. Sommaire](#12-sommaire)
   - [1.3. Elements prealable](#13-elements-prealable)
