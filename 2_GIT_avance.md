@@ -1,20 +1,19 @@
-# 1. GIT avance
+# 1. Git avance
 
 ## 1.1. Sommaire general
 
-- [1. GIT les bases](.)
-- [2. GIT avancé](./2_GIT_avance.md)
+- [1. Git les bases](.)
+- [2. Git avancé](./2_Git_avance.md)
 - [3. Gitflow](./3_Gitflow.md)
 
 ## 1.2. Sommaire
 
-- [1. GIT avance](#1-git-avance)
+- [1. Git avance](#1-git-avance)
   - [1.1. Sommaire general](#11-sommaire-general)
   - [1.2. Sommaire](#12-sommaire)
   - [1.3. Introduction](#13-introduction)
   - [1.4. Configurer l'authentification SSH](#14-configurer-lauthentification-ssh)
     - [1.4.1. Generer une cle SSH](#141-generer-une-cle-ssh)
-      - [1.4.1.1. Windows](#1411-windows)
   - [1.5. Utiliser rebase avant de faire un merge](#15-utiliser-rebase-avant-de-faire-un-merge)
   - [1.6. Le rebase interractif](#16-le-rebase-interractif)
   - [1.7. Ajouter des modifications au dernier commit](#17-ajouter-des-modifications-au-dernier-commit)
@@ -29,29 +28,27 @@
 
 ## 1.3. Introduction
 
-Ceci est la deuxième partie du tutoriel sur GIT. Si vous ne connaissez pas GIT et que vous n'avez pas lu la première partie, je vous recommande de vous former aux bases de son utilisation en [cliquant ici](./README.md).
+Ceci est la deuxième partie du tutoriel sur Git. Si vous ne connaissez pas Git et que vous n'avez pas lu la première partie, je vous recommande de vous former aux bases de son utilisation en [cliquant ici](./README.md).
 
 ---
 
-Bien, vous avez donc déjà une petite expérience avec GIT. Mais vous êtes acharné! Il vous en faut plus!  
-Très bien, dans cette session, nous allons aborder quelques concepts clé de GIT pour une utilisation qui se rapproche de ce que j'utilise au quotidien dans mon travail et dans mes projets annexes.
+Bien, vous avez donc déjà une petite expérience avec Git. Mais vous êtes acharné! Il vous en faut plus!  
+Très bien, dans cette session, nous allons aborder quelques concepts clé de Git pour une utilisation qui se rapproche de ce que j'utilise au quotidien dans mon travail et dans mes projets annexes.
 
 On va commencer par se détourner un peu des commandes pour se concentrer sur un aspect de sécurité.
 
 ## 1.4. Configurer l'authentification SSH
 
-Secure SHell est un protocole de communication entre deux machines qui permet bien des choses. SSH permet entre autres l'accès à distance de serveurs, ou de RaspberryPI qui tourne chez vous pour de la domotique ou pour un serveur privé. Dans le cadre de l'utilisation de GIT, SSH va nous permettre de nous connecter de manière sécurisée à notre repo distant, et, en plus de ça, d'avoir accès à des repo sur différentes plateformes à la fois.  
-C'est le grand problème que j'ai rapidement recontré quand j'ai voulu explorer les différentes plateformes d'hébergements de repo sur internet (GitHub, GitLab, ...). Pour passer de l'une à l'autre, il faut réinitialiser ses identifiants sur la première plateforme puis se connecter à la seconde. C'est très peu pratique, en particulier si vous changez régulièrement.
+Secure SHell est un protocole de communication entre deux machines qui permet bien des choses. SSH permet entre autres l'accès à distance de serveurs, ou de RaspberryPI qui tourne chez vous pour de la domotique ou pour un serveur privé. Dans le cadre de l'utilisation de Git, SSH va nous permettre de nous connecter de manière sécurisée à notre repo distant, et, en plus de ça, d'avoir accès à des repos sur différentes plateformes à la fois.  
+C'est le grand problème que j'ai rapidement recontré quand j'ai voulu explorer les différentes plateformes d'hébergements de repos sur internet (GitHub, GitLab, ...). Pour passer de l'une à l'autre, il faut réinitialiser ses identifiants sur la première plateforme puis se connecter à la seconde. C'est très peu pratique, en particulier si vous changez régulièrement.
 
 La solution c'est SSH. Ce protocole va vous permettre, en générant une paire de clés et en plaçant votre clé publique sur la plateforme, de pouvoir vous connecter à plusieurs plateforme dynamiquement via cette clé.
 
 ### 1.4.1. Generer une cle SSH
 
-*Note: Pour Linux, vous pouvez suivre le même tutoriel en ouvrant un terminal et en vous rendant dans votre `/home/<Nom d'utilisateur>` à la place de `/<Lettre de disque>/Users/<Nom d'utilisateur`. Les commandes restent les mêmes.*
+*Note: Pour Linux, vous pouvez suivre le même tutoriel en ouvrant un terminal et en vous rendant dans votre `/home/<Nom d'utilisateur>` à la place de `/<Lettre de disque>/Users/<Nom d'utilisateur>`. Les commandes restent les mêmes.*
 
-#### 1.4.1.1. Windows
-
-Ouvrez un terminal Git Bash (installation via l'exe de d'installation de GIT, normalement installé si vous n'avez pas touché aux options lors de l'installation de GIT).  
+Ouvrez un terminal Git Bash (installation via l'exe de d'installation de Git, normalement installé si vous n'avez pas touché aux options lors de l'installation de Git).  
 Votre dossier courant (indiqué en jaune dans l'en-tête de la ligne) doit être `~`. Il correspond à votre dossier utilisateur de Windows.
 
 Afin d'être sûr que vous soyez dans le bon dossier, entrez la commande `pwd`.  
@@ -86,7 +83,7 @@ Cette commande va vous demander plusieurs choses à la suite pour générer la c
 
 Vous allez obtenir dans votre dossier (toujours `ls -la` pour lister les fichiers de votre dossier) les fichiers `<Nom de votre cle>` et `<Nom de votre cle>.pub` (id_rsa et id_rsa.pub si vous avez laissé par défaut.).
 
-A présent, il nous faut ajouter cette clé dans votre agent ssh qui tourne en fond. Pour ça, on va exécuter les commandes suivantes:
+A présent, il nous faut ajouter cette clé dans votre agent SSH qui tourne en fond. Pour ça, on va exécuter les commandes suivantes:
 
 - `eval $(ssh-agent -s)`. Ca va permettre de s'assurer que l'agent est bien en fonctionnement. Si il est arrêté, alors la commande va le démarrer automatiquement.
 - `ssh-add <Votre clé SSH>`. Cette commande ajoute votre clé à la liste des clés connues par votre agent.
@@ -102,7 +99,7 @@ Votre terminal va vous demander une validation pour votre clé SSH, saisissez "y
 Si la connexion réussie, vous obtiendrez un message du style "Welcome macdrien!".
 
 Félicitaion! Vous avez configuré votre plateforme d'hébergement de repo pour utiliser le SSH. A partir de maintenant, vous pourrez cloner vos repo en utilisant le lien SSH plutôt que le lien HTTP. Git s'occupera du reste.  
-Pour les repos que vous avez déjà cloné, je vous invite à modifier l'adresse de votre origin avec la commande: `git remote set-url origin <Adresse SSH de votre repo>`. Pour donner un exemple, faire ceci avec le repo git-tutorials sur lequel vous êtes donnerez ceci: `git remote set-url origin git@github.com:macdrien/git-tutorials.git`.
+Pour les repos que vous avez déjà cloné, je vous invite à modifier l'adresse de votre origin avec la commande: `git remote set-url origin <Adresse SSH de votre repo>`. Pour donner un exemple, faire ceci avec le repo git-tutorials sur lequel vous êtes donnerait ceci: `git remote set-url origin git@github.com:macdrien/git-tutorials.git`.
 
 ---
 
@@ -128,26 +125,26 @@ Host gitlab.com
         IdentityFile ~/.ssh/votre_cle_gitlab_privée
 ```
 
-Notez que vous pouvez utiliser la même clé pour toutes vos plateforme. Mais ce n'est pas une bonne idée. Si votre clé privée est compromise, alors le voleur aura accès à toutes vos plateforme. Alors que si vous faites une clé par plateforme vous limitez les dégâts.
+Notez que vous pouvez utiliser la même clé pour toutes vos plateforme. Mais ce n'est pas une bonne idée. Si votre clé privée est compromise, alors le voleur aura accès à toutes vos plateformes. Alors que si vous faites une clé par plateforme vous limiterez les dégâts.
 
 ## 1.5. Utiliser rebase avant de faire un merge
 
-Dans la première partie du tuto, on a évoqué le merge d'une branche vers sa branche mère. Le merge est très efficace mais il a un défaut, il insère, dans la branche mère, les commits dans l'ordre croissant de date de création. Autrement dit, vos commits et les commits de l'autre branche vont se mélanger. Si en pratique cela ne change rien au projet, cela peut en revanche poser quelques problèmes de lecture de l'historique.
+Dans la première partie du tuto, on a évoqué le merge d'une branche vers sa branche mère. Le merge est très efficace mais il a un défaut. Il insère, dans la branche mère, les commits dans l'ordre croissant de date de création. Autrement dit, vos commits et les commits de l'autre branche vont se mélanger. Si ça ne change rien au projet, cela peut en revanche poser quelques problèmes lors de la lecture de l'historique.
 
 Pour un merge de la branche B sur la branche A, cela pourrait donner ceci:
 
 Avant le merge:
 
 ```plaintext
-Branche A -X----X-----X----X--
+Branche A -X-------X-----X----X--
             \                 
-Branche B    -O----O----O----O
+Branche B    -O--O----O----O
 ```
 
 Après le merge:
 
 ```plaintext
-Branche A -X--O--X--O--X--O--X--O-
+Branche A -X--O--O--X--O--X--O--X-
 ```
 
 Afin d'avoir un arbre de commits plus propre et surtout plus clair à lire, on va utiliser la commande rebase. En utilisant la commande rebase sur la branche B avant de merge, l'origine de la branche B va se déplacer sur le dernier commit de la branche A. Cela va permettre de réorganiser le tout avant de merge:
@@ -184,23 +181,22 @@ Après le merge:
 Branche A -X----X-----X----X-O----O----O----O
 ```
 
-Comme on peut le voir, rebase modifie le référenciel des commits. Par précaution, GIT ne nous laissera pas push cette modification. Pour envoyer un rebase, il faut ajouter l'arguement `--force` à `git push`. Ou mieux, `git push --force-with-lease` (j'aborderai cet argument plus tard).
+Comme on peut le voir, rebase modifie le référenciel des commits. Par précaution, Git ne nous laissera pas push cette modification. Pour envoyer un rebase, il faut ajouter l'arguement `--force` à `git push`. Ou mieux, `git push --force-with-lease` (j'aborderai cet argument dans un autre tutoriel).
 
-Rebase est une commande très vaste et aussi très risquée. On va voir tout de suite un autre example d'utilisation.
+Rebase est une commande très vaste et aussi très risquée. On va voir tout de suite un autre example d'utilisation:
 
 ## 1.6. Le rebase interractif
 
 Pour passer en rebase interactif: `git rebase -i A` ou `git rebase --interactive A`.
 
-*Note:* Il est possible de changer l'ordre des lignes afin de réordonner les commits.
-
-La liste des commits est ordonnée du plus ancien (en haut) au plus récent (dernier de la liste):
+La liste des commits est ordonnée du plus ancien (en haut) au plus récent (dernier de la liste).  
+Chaque commit est précédé par l'action à faire sur lui. C'est en changeant ces actions et en réordonnant les lignes que vous allez pouvoir modifier l'historique.
 
 - **pick** applique le commit sans modification.
 - **reword** ouvrira le commit pour changer le title et/ou la description.
 - **edit** met le rebase en pause à ce commit pour pouvoir y faire des modifications via des ammends.
 - **squash** fusionne le commit avec le précédent (celui de la ligne du dessus). Ouvrira une interface avec les deux titres et description de commit pour choisir ce qui sera conservé. *Note*: Il est possible de squash plusieurs commits d'un coup dans un commit.
-- **fixup** comme squash mais n'affiche pas l'interface d'édition du commit. Conserve uniquement le descriptif du commit non-squash. En utilisant l'arguement `-C`, le decsriptif conservé sera celui du commit avec `fixup -C`.
+- **fixup** comme squash mais conserve uniquement le descriptif du commit non-squash. En utilisant l'arguement `-c`, le decsriptif conservé sera celui du commit avec `fixup -c`. Avec `-C`, le comportement sera le même qu'avec `-c` mais l'interface pour changer le titre du commit ne s'ouvrira pas.
 - **exec** suivi d'une commande exécutera la commande shell.
 - **break** met ne pause le rebase à cet endroit. Demandera un `git rebase --continue` pour poursuivre.
 - **drop** supprime le commit.
@@ -222,12 +218,14 @@ Vous pouvez également y ajouter le `-m` que vous connaissez déjà pour modifie
 
 Vous pouvez n'avoir besoin d'ajouter à votre index qu'une partie d'un fichier. Pour faire cela, pour pouvez ajouter l'option `-p` pour `--patch` à votre `git add`. Vous aurez alors directement dans la console une présentation des changement avec la possibilité de choisir si vous voulez ajouter le changement ou non à votre index.
 
+*Note:* Le mot "hunk" désigne une modification dans un fichier.
+
 Différentes options sont possible:
 
 - **y** pour ajouter le changement et passer au suivant.
 - **n** pour marquer le changement comme n'étant pas à ajouter et passer au suivant.
 - **q** pour quitter cette interface de sélection sans sélectionner le morceau (hunk) présenté ni les suivants.  
-  Concervera les choix déjà effectués.
+  **Important:** Concervera les choix déjà effectués.
 - **a** pour ajouter le morceau (hunk) présenté et tous les suivants.
 - **d** pour ne pas ajouter le morceau (hunk) présenté et aucun des morceaux suivants.
 - **g** pour indiquer un numéro de hunk et s'y rendre.
@@ -248,18 +246,19 @@ Différentes options sont possible:
 Nommer un commit est important car le titre d'un commit est l'élément principal qui servira à vous ou à la personne reprennant le code à savoir ce que le commit fait.  
 On oublie donc les "test", "qsd" et autre " " comme j'ai pu en voir dans un contexte professionnel.
 
-A la place, je vous recommande d'adopter une convention de nommage simple et fixe, sinon à toute l'équipe, du moins à vous. C'est en servant d'exemple que vous pourrez inciter les autres à changer leurs pratiques.
+A la place, je vous recommande d'adopter une convention de nommage simple et identique, sinon à toute l'équipe, au moins à vous. C'est en servant d'exemple que vous pourrez inciter les autres à changer leurs pratiques.
 
-Par exemple, si vous utilisez Jira, vous pouvez lier le commmit que vous faite à la story Jira que vous êtes en train de traiter en commençant votre commit par: "Story XP[S]:XXX". Le S n'étant pas toujours présent et XXX correspondant à la story sur laquelle vous travaillez.  
+Par exemple, si vous utilisez Jira, vous pouvez lier le commmit que vous faite à la story Jira que vous êtes en train de traiter en commençant votre commit par: "Story XP[S]:XXX". Le S n'étant pas toujours présent et XXX correspondant au numéro de la story sur laquelle vous travaillez.  
 En faisant cela, en plus d'une suite de titre explicite, vous aider le futur relecteur. Ce dernier pourra, au besoin, aller voir la story en question pour voir son objectif.
 
-J'ai personnellement adopté une convention de nommage personnelle que j'applique sur tous les projets sur lesquels je passe du moment que ma convention n'entre pas en conflit avec une convention existante. Elle est simple et lisible par n'importe qui sans avoir besoin de documentation. Il s'agit d'un préfixage de 3 lettres majuscules de chaque titre de commit. Cela sert à indiquer le type de commit dont il s'agit. Je complète ensuite le titre pour apporter une précision sur l'action.
+J'ai personnellement adopté une convention de nommage que j'applique sur tous les projets sur lesquels je passe du moment que ma convention n'entre pas en conflit avec une convention existante. Elle est simple et lisible par n'importe qui sans avoir besoin de documentation. Il s'agit d'un préfixage de 3 lettres majuscules de chaque titre de commit. Ce préfixe sert à indiquer le type de commit dont il s'agit. Je complète ensuite le titre pour apporter une précision sur l'action.
 
 - **ADD** indique que le commit ajoute quelque chose (fonctionnalité, nouvelle classe/méthode, ...).
-- **DEL** indique, au contraire, que le commit ne fait que supprimer des éléments.
-- **FIX** indique que le commit résoud un bug.
-- **WIP** indique que le commit concerne un travail en cours et non-terminé.
-- **REF** indique que le commit applique un réfactor du code (sans ajout ou suppression de fonctionnalité).
+- **DEL** indique que le commit ne fait que supprimer des éléments.
+- **FIX** indique que le commit résoud un bug ou une erreur.
+- **WIP** indique que le commit concerne un travail en cours et non-terminé.  
+  Ce type de commit doit disparraître par la suite via un rebase interractif pour être fusionné avec le commit final.
+- **REF** indique que le commit applique un réfactor du code (sans ajout ou suppression de fonctionnalité métier).
 - **UPD** est en dernier. Il signifie Update et est un peu passe-partout. Il est utilisé lors de modification naturellement, mais également si j'ai un commit qui effectue plusieurs petites tâches qui devront toutes être décrite en description du commit.
 
 Je ne vous présente pas mon système pour que vous le repreniez, mais plutôt pour que vous ayez un exemple de ce qui peut être possible afin que vous puissiez créer votre système ou adapter un système existant à vos besoins (qui peuvent être différents des autres développeurs).
@@ -274,7 +273,7 @@ Comme toutes les commandes, et même plus encore pour stash, plusieurs actions e
 
 ### 1.10.1. Mettre son travail de cote
 
-Avec la commande `git stash push`, vous pouvez mettre votre travail de côté.
+Avec la commande `git stash push`, vous pouvez mettre votre travail de côté. Il disparraîtra donc de votre projet tant que vous le voulez.
 
 Vous pouvez compléter cette commande avec l'option `-m` suivi d'un titre (le fonctionnement et l'objectif sont les mêmes que l'option `-m` de git commit).
 
@@ -287,9 +286,9 @@ Par exemple `git stash push -- index.js css/style.js`.
 
 ### 1.10.2. Lister ses stashs
 
-Vous pouvez faire plusieurs stash différents en faisant plusieurs push. Dans ce cas, ils seront listé et référencés par une liste dont le premier élément sera votre dernier stash effectué et le dernier élément sera votre stash le plus ancien.
+Vous pouvez faire plusieurs stashs différents en faisant plusieurs `git stash push`. Dans ce cas, ils seront listés et référencés par une liste dont le premier élément sera votre dernier stash effectué et le dernier élément sera votre stash le plus ancien.
 
-Pour lister vos stash, vous pouvez utiliser la commande: `git stash list`
+Pour lister vos stashs, vous pouvez utiliser la commande: `git stash list`
 
 Le numéro que vous observez alors entre {} est l'index de chaque stash. Il vous sera utile si vous voulez récupérer un stash en particulier.
 
@@ -297,7 +296,7 @@ Le numéro que vous observez alors entre {} est l'index de chaque stash. Il vous
 
 Pour récupérer le contenu d'un stash, vous avez deux commandes de disponible:
 
-`git stash apply` va placer dans votre repo local le dernier stash que vous avez fait. Mais une copie de ce stash va rester dans la pile de côté.
+`git stash apply` va placer dans votre repo local le dernier stash que vous avez fait. Mais une copie de ce stash va rester dans la liste des stashs existant.
 
 `git stash pop` va placer dans votre repo local le dernier stash que vous avez fait et va supprimer la copie de ce stash dans la pile.
 
@@ -305,7 +304,7 @@ Si vous ne voulez pas récupérer le dernier stash fait, vous pouvez préciser l
 
 ### 1.10.4. Supprimer un stash
 
-Après un apply ou pour faire du nettoyage, vous pouvez vider votre pile de stash. Pour cela, vous avez à nouveau 2 options:
+Après un apply ou pour faire du nettoyage, vous pouvez vider votre pile de stashs. Pour cela, vous avez à nouveau 2 options:
 
 - `git stash drop` qui va supprimer le dernier stash enregistré. Vous pouvez y appliquer un numéro d'index pour supprimer le stash voulu.
 - `git stash clear` qui va supprimer toute votre pile.

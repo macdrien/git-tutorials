@@ -2,8 +2,8 @@
 
 ## 1.1. Sommaire general
 
-- [1. GIT les bases](.)
-- [2. GIT avancé](./2_GIT_avance.md)
+- [1. Git les bases](.)
+- [2. Git avancé](./2_Git_avance.md)
 - [3. Gitflow](./3_Gitflow.md)
 
 ## 1.2. Sommaire
@@ -29,9 +29,9 @@
 
 ### 1.3.1. Problème
 
-- A force de créer des branches, le repo peut devenir fouilli
-- Dans un contexte de CD => Nécéssité d'avoir une branche stable pour les déploiments
-- Sans organisation, de nombreux conflits peuvent survenir
+- A force de créer des branches, le repo peut devenir fouilli.
+- Dans un contexte de CD => Nécéssité d'avoir une branche stable pour les déploiments.
+- Sans organisation, de nombreux conflits peuvent survenir.
 
 ### 1.3.2. Principe
 
@@ -39,7 +39,7 @@ Structuration du repository via des "types" de branches qui ont des intéraction
 
 ---
 
-*Note* : Dans les parties suivantes, le gitflow présenté sera la version la plus complète existente. Une dernière partie sur des idées d'adaptations pour un système simplifié.
+*Note* : Dans les parties suivantes, le GitFlow présenté sera la version la plus complète existente. La dernière partie concernera sur des idées d'adaptations pour un système simplifié.
 
 ---
 
@@ -50,15 +50,15 @@ Le GitFlow s'utilise très bien dans les contextes de gestion agile (scrum, kanb
 Les types de branches seront décrits de la manière suivante:
 
 1. Le type de branche en titre
-2. Le nommage conventionnellement juste après en gras (si il existe)
+2. Le nommage conventionnel juste après et en gras (si il existe)
 3. Une description du type de branche
 
 ### 1.4.1. Le tronc (trunk)
 
-**main** (anciennement **master**)
+**main** (remplaçant de **master**)
 
 Contient l'historique des versions déployées.  
-HEAD est la dernière version disponible (majeure.mineure.bugfix).  
+HEAD est la dernière version disponible (ex: v1.4.2).  
 Les autres versions sont dipsonible via des tags.
 
 ### 1.4.2. La branche principale de developpement
@@ -77,7 +77,7 @@ Branche de travail pour l'ajout d'une fonctionnalité, correction d'un bug, refa
 
 Peut porter le numéro de la version à produire.
 
-Branche temporaire, après le développement d'une nouvelle version. Elle permet une dernière phase de tests et la préparation des livrables avant la production. Elle peut également accueillir des commits de correction de bugs.
+Branche temporaire, après le développement d'une nouvelle version. Elle permet une dernière phase de tests et la préparation des livrables avant la mise en production. Elle peut également accueillir des commits de correction de bugs.
 
 ### 1.4.5. Branche de hot-fix
 
@@ -89,22 +89,22 @@ Similaire aux branches de fonctionnalités, ces branches permettent la correctio
 
 ## 1.5. Regles a suivre
 
-- Aucun commit/push sur les branches main et develop.
+- Aucun commit/push sur les branches `main` et `develop`.
 - Si il y a une CI:
-  - elle doit toujours être au vert pour les branches main, develop et les branches de version.
+  - elle doit toujours être au vert pour les branches `main`, `develop` et les branches de version.
   - les merges d'une branche vers une autre ne doivent se faire que si la CI est au vert.
-- La mise en place d'une CD:
-  - Peut se faire sur la branche main vers l'environnement de production
-  - Peut se faire sur les branches de version vers un environnement de pré-production.
-  - Peut se faire sur la branche develop vers un environnement de développement.
-- La branche develop est créée depuis la branche main
-- Les branches de version sont créées depuis la branche develop
-- Les branches de fonctionnalités sont créées depuis la branche develop
-- Les branches de hot-fix sont créées depuis la branche main
-- Les branches de fonctionnalités sont rappatriées sur la branche develop
-- Les branches de version sont rappatriées sur la branche main. Elle le sera également sur la branche develop si il y a eu des commits sur la branche.
-- Les branches de hot-fix sont rappatriées sur la branche main et sur la branche develop.
-- Règle de bonne pratique: S'assure que notre branche est basé sur la HEAD de la branche mère avant de la rappatrier. En cas de conflits au moment du changement de référenciel, cela permet de gérer les conflits sur sa branche et non sur la branche mère (qui est souvent la develop).
+- La mise en place d'une CD peut se faire sur:
+  - La branche `main` vers l'environnement de production
+  - Les branches de version vers un environnement de pré-production.
+  - La branche `develop` vers un environnement de développement.
+- La branche `develop` est créée depuis la branche `main`.
+- Les branches de version sont créées depuis la branche `develop`.
+- Les branches de fonctionnalités sont créées depuis la branche `develop`.
+- Les branches de hot-fix sont créées depuis la branche `main`.
+- Les branches de fonctionnalités sont rappatriées sur la branche `develop`.
+- Les branches de version sont rappatriées sur la branche `main`. Elle le sera également sur la branche `develop` si il y a eu des commits sur la branche.
+- Les branches de hot-fix sont rappatriées sur la branche `main` et sur la branche `develop`.
+- Règle de bonne pratique: S'assure que notre branche est basé sur la HEAD de la branche mère avant de la rappatrier. En cas de conflits au moment du changement de référenciel, cela permet de gérer les conflits sur sa branche et non sur la branche mère (qui est souvent la `develop`).
 - Règle de bonne pratique: Intégrer un processus de relecture et de test avant tout merge (en particulier ceux de hot-fix).
 
 ## 1.6. Schema de la vie d'un projet suivant le GitFlow
@@ -124,10 +124,10 @@ feature-1           O---O---O
 
 ## 1.7. GitFlow simplifie
 
-Le GitFlow est un système, certes très robuste, mais également assez lourd à mettre en place. il est donc pertinent de l'utiliser dans sa forme complète dans les gros projets ou dans les projets demandant un haut niveau de qualité et de fiabilité dans ses livrables. Il est également très utile pour cadrer une grande équipe afin de chacun ne déborde pas sur les parties des autres (conflits je vous regarde).  
-Pour les projets de plus faible envergure (prototypage, side-project de test/entraînement, ...) et unipersonnel ou dans une petite équipe, le GitFlow peut être simplifié avec de rendre son implémentation plus accessible.
+Le GitFlow est un système, certes très robuste, mais également assez lourd à mettre en place. Il est pertinent de l'utiliser dans sa forme complète dans les gros projets ou dans les projets demandant un haut niveau de qualité et de fiabilité dans ses livrables. Il est également très utile pour cadrer une grande équipe afin que chacun ne déborde pas sur les parties des autres (conflits je vous regarde).  
+Pour les projets de plus faible envergure (prototypage, side-project de test/entraînement, ...) et unipersonnel ou dans une petite équipe, le GitFlow peut être simplifié afin de rendre son implémentation plus accessible.
 
-Il est possible par exemple de supprimer les branches de version. La phase de test et les livrables qu'elles incluent peut être faites au sein de la branche develop (pas directement mais via une branche de fonctionnalité).  
+Il est possible par exemple de supprimer les branches de version. La phase de test et les livrables qu'elles incluent peuvent être fait au sein de la branche `develop` (pas directement mais via une branche de fonctionnalité).  
 La suppression de ces branches peut simplifier le déploiement d'une nouvelle version.
 
 Dans le cadre d'un projet qui n'est pas déployé en production (entraînement, ...), il est également possible de supprimer les branches de hot-fix et de faire la résolution de ces bugs via des branches de fonctionnalités et en produisant une version plus rapidement pour corriger le bug plus tôt.
