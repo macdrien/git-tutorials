@@ -4,6 +4,7 @@
 
 - [1. GIT les bases](.)
 - [2. GIT avancé](./2_GIT_avance.md)
+- [3. Gitflow](./3_Gitflow.md)
 
 ## 1.2. Sommaire
 
